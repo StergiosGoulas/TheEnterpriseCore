@@ -1,0 +1,5 @@
+ROADMAP.md
+.vscode/
+target/
+*.class
+*.jar
