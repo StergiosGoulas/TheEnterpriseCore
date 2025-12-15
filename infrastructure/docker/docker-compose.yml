@@ -31,6 +31,21 @@ services:
     networks:
       - ecommerce-network
 
+      # Database for Inventory Service
+  postgres-inventory:
+    image: postgres:15-alpine
+    container_name: postgres-inventory
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: inventory_db
+    ports:
+      - "5434:5432"
+    volumes:
+      - postgres_inventory_data:/var/lib/postgresql/data
+    networks:
+      - ecommerce-network
+
   # --- Message Broker (Kafka) ---
 
   # Zookeeper (Required for Kafka coordination)
@@ -84,6 +99,8 @@ services:
 volumes:
   postgres_product_data:
   postgres_order_data:
+
+  postgres_inventory_data:
 
 networks:
   ecommerce-network:
